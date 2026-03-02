@@ -2,13 +2,13 @@
 
 65 skills and 36 commands across 8 plugins for Product Managers. Built for Claude Code and Claude Cowork, with skills compatible across AI coding assistants.
 
-![Plugin overview](plugins_command_skills.webp)
+![Plugin overview](plugins-overview.webp)
 
 ## Table of Contents
 
 - [Installation](#installation)
-- [Skills and Commands](#skills-and-commands)
-- [Plugins](#plugins)
+- [Skills, Commands, and Plugins](#skills-commands-and-plugins)
+- [Available Plugins](#available-plugins)
   - [1. pm-product-discovery](#1-pm-product-discovery)
   - [2. pm-product-strategy](#2-pm-product-strategy)
   - [3. pm-execution](#3-pm-execution)
@@ -17,7 +17,6 @@
   - [6. pm-go-to-market](#6-pm-go-to-market)
   - [7. pm-marketing-growth](#7-pm-marketing-growth)
   - [8. pm-toolkit](#8-pm-toolkit)
-- [How Commands Chain Together](#how-commands-chain-together)
 - [About](#about)
 
 ## Installation
@@ -27,7 +26,7 @@
 1. Open **Customize** (bottom-left)
 2. Go to **Browse plugins** → **Personal** → **+**
 3. Select **Add marketplace from GitHub**
-4. Enter: `phuryn/pm-plugins`
+4. Enter: `phuryn/pm-skills`
 
 All 8 plugins install automatically. You get both commands (`/discover`, `/strategy`, etc.) and skills.
 
@@ -36,7 +35,7 @@ For a full walkthrough, see [Claude Cowork: The Ultimate Guide for PMs](https://
 ### Claude Code (CLI)
 
 ```bash
-claude plugin add --marketplace phuryn/pm-plugins
+claude plugin add --marketplace phuryn/pm-skills
 ```
 
 ### Other AI assistants (skills only)
@@ -59,17 +58,39 @@ done
 
 ---
 
-## Skills and Commands
+## Skills, Commands, and Plugins
 
 **Skills** are the building blocks of the marketplace. Each skill gives Claude domain knowledge, analytical frameworks, or a guided workflow for a specific PM task. Skills are loaded automatically when relevant to the conversation — no explicit invocation needed. Some skills also work as reusable foundations that multiple commands share.
 
 **Commands** are user-triggered workflows invoked with `/command-name`. They chain one or more skills into an end-to-end process. For example, `/discover` chains four skills together: brainstorm-ideas → identify-assumptions → prioritize-assumptions → brainstorm-experiments.
 
+**Plugins** group related skills and commands into installable packages. Each plugin covers a PM domain — discovery, strategy, execution, and so on. Installing the marketplace gives you all 8 plugins at once.
+
 Commands use skills. Some skills serve multiple commands. Some skills (like `prioritization-frameworks` or `opportunity-solution-tree`) are standalone references that Claude draws on whenever relevant — no command needed.
+
+Commands are designed to flow into each other, matching the PM workflow:
+
+```
+/strategy → /business-model → /pricing
+     ↓
+/discover → /brainstorm → /write-prd → /write-stories → /sprint plan
+     ↓              ↓           ↓
+/interview    /triage-requests  /pre-mortem
+     ↓
+/research-users → /analyze-feedback
+                       ↓
+/plan-launch → /growth-strategy → /battlecard
+     ↓
+/market-product → /north-star → /setup-metrics
+```
+
+After any command completes, it suggests relevant next commands — just follow the prompts.
+
+![How skills work](how-skills-work.webp)
 
 ---
 
-## Plugins
+## Available Plugins
 
 ### 1. pm-product-discovery
 
@@ -344,28 +365,6 @@ Commands:
 - `/review-resume [attach your PM resume]`
 - `/tailor-resume [attach resume + paste job description]`
 - `/proofread Here's the draft of our Q1 investor update`
-
----
-
-## How Commands Chain Together
-
-Commands are designed to flow into each other, matching the PM workflow:
-
-```
-/strategy → /business-model → /pricing
-     ↓
-/discover → /brainstorm → /write-prd → /write-stories → /sprint plan
-     ↓              ↓           ↓
-/interview    /triage-requests  /pre-mortem
-     ↓
-/research-users → /analyze-feedback
-                       ↓
-/plan-launch → /growth-strategy → /battlecard
-     ↓
-/market-product → /north-star → /setup-metrics
-```
-
-After any command completes, it suggests relevant next commands — just follow the prompts.
 
 ---
 
