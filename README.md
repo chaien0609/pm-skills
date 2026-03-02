@@ -4,7 +4,7 @@
 
 ![Plugin overview](.docs/images/plugins-overview.webp)
 
-Designed for Claude Code and Cowork. Skills compatibile with other AI assistants.
+Designed for Claude Code and Cowork. Skills compatible with other AI assistants.
 
 ## Start Here
 
